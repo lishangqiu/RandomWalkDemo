@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Random Walk</title>
+        <meta name="description" content="Random Walk Simulation Educational Game">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            body{
+                background-color: #e7e7e7;
+            }
+        </style>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153588627-1"></script>
+          <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+      
+              gtag('config', 'UA-153588627-1');
+          </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-static-top mb-0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">David's Website</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown" id="games-dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#">
+                        Web Games
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/gravitygame/gravitygame.html">Gravity Game</a></li>
+                    </ul>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="btn btn-secondary nav-link" href="#">Projects</a>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="btn btn-secondary nav-link" href="#">Bio</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div  id="game">
+
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="999" value="900" class="slider" id="stepsSlider">
+        </div>
+
+
+        <script type="text/javascript" src="js/phaser.js"></script>
+        <script type="text/javascript" src="js/victor.js"></script>
+        <script src='js/main.js' type='module'></script>
+    </body>
+</html>

@@ -2,7 +2,7 @@ import {SCREEN_HEIGHT, SCREEN_WIDTH, MIN_ZOOM, MAX_ZOOM} from "./config.js"
 import {NUM_WIDTH, NUM_HEIGHT} from "./pixels_manager.js"
 import PixelManager from "./pixels_manager.js";
 
-const TOTAL_STEPS = 1000;
+const TOTAL_STEPS = 10000;
 export {TOTAL_STEPS};
 
 function copy(aObject) {

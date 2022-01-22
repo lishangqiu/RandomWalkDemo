@@ -3,57 +3,70 @@ import SpectrumUtil from "./spectrum_pixels.js"
 
 var SIDE_BORDER_WIDTH = 2;
 var MIDDLE_LINES_WIDTH = 0.6;
-const NUM_WIDTH = 24*4;
-const NUM_HEIGHT = 15*4;
-var UNIT_SIDE_WHITE_BORDER = 1;
+const NUM_WIDTH = 24*12;
+const NUM_HEIGHT = 15*12;
+var UNIT_SIDE_WHITE_BORDER = 0.7;
 
-var INSIDE_WIDTH = SCREEN_WIDTH - (SIDE_BORDER_WIDTH*2);
-var INSIDE_HEIGHT = SCREEN_HEIGHT - (SIDE_BORDER_WIDTH*2);
+var INSIDE_WIDTH = SCREEN_WIDTH*2 - (SIDE_BORDER_WIDTH*2);
+var INSIDE_HEIGHT = SCREEN_HEIGHT*2 - (SIDE_BORDER_WIDTH*2);
 
-export {NUM_WIDTH, NUM_HEIGHT};
+var unitWidth = INSIDE_WIDTH/NUM_WIDTH-UNIT_SIDE_WHITE_BORDER;
+var unitHeight = INSIDE_HEIGHT/NUM_HEIGHT-UNIT_SIDE_WHITE_BORDER;
+
+export {NUM_WIDTH, NUM_HEIGHT, INSIDE_HEIGHT, INSIDE_WIDTH, UNIT_SIDE_WHITE_BORDER, unitWidth, unitHeight};
 
 export default class PixelManager{
-    constructor(scene){
+    constructor(scene, scene2){
         this.sceneObj = scene;
+        this.sceneObj2 = scene2;
+        console.log(this.sceneObj2);
         this.linesContainer = this.sceneObj.add.container(0, 0);
 
         this.createUnits();
         this.createBorder();
         this.spectrumColors = new SpectrumUtil();
+
+        //this.leader = this.sceneObj.add.circle(INSIDE_WIDTH/2+(unitWidth/2), INSIDE_HEIGHT/2+(unitWidth/2), 10, 0xff00ff);
     }
 
     createBorder(){
         //var leftBorder = this.sceneObj.add.line(BORDER_WIDTH, SCREEN_HEIGHT/2, 0, 0, 0, SCREEN_HEIGHT-BORDER_WIDTH, 0x000000).setLineWidth(BORDER_WIDTH);
-        this.createHorizontalLine(SIDE_BORDER_WIDTH, SIDE_BORDER_WIDTH, 0x000000);
-        this.createHorizontalLine(SCREEN_WIDTH-SIDE_BORDER_WIDTH, SIDE_BORDER_WIDTH, 0x000000);
+        this.createVerticalLine(SIDE_BORDER_WIDTH, INSIDE_HEIGHT, SIDE_BORDER_WIDTH, 0x000000, this.sceneObj2);
+        this.createVerticalLine(INSIDE_WIDTH, INSIDE_HEIGHT, SIDE_BORDER_WIDTH, 0x000000, this.sceneObj2);
 
-        this.createVerticalLine(SIDE_BORDER_WIDTH, SIDE_BORDER_WIDTH, 0x000000);
-        this.createVerticalLine(SCREEN_HEIGHT-SIDE_BORDER_WIDTH, SIDE_BORDER_WIDTH, 0x000000);
+        this.createHorizontalLine(SIDE_BORDER_WIDTH, INSIDE_WIDTH, SIDE_BORDER_WIDTH, 0x000000, this.sceneObj2);
+        this.createHorizontalLine(INSIDE_HEIGHT, INSIDE_WIDTH, SIDE_BORDER_WIDTH, 0x000000, this.sceneObj2);
     }
 
     createUnits(){
         this.createPixels();
 
-        for(let i=0; i < NUM_WIDTH; i++){
-            this.linesContainer.add(this.createHorizontalLine(INSIDE_WIDTH/NUM_WIDTH*i  + SIDE_BORDER_WIDTH, MIDDLE_LINES_WIDTH, 0x4e4e4e));
+        for(let i=0; i <= NUM_WIDTH; i++){
+            this.linesContainer.add(this.createVerticalLine(INSIDE_WIDTH/NUM_WIDTH*i + MIDDLE_LINES_WIDTH, INSIDE_HEIGHT + (SIDE_BORDER_WIDTH/2), MIDDLE_LINES_WIDTH, 0x4e4e4e, this.sceneObj));
         }
 
-        for(let i=0; i < NUM_HEIGHT; i++){
-            this.linesContainer.add(this.createVerticalLine(INSIDE_HEIGHT/NUM_HEIGHT*i + SIDE_BORDER_WIDTH, MIDDLE_LINES_WIDTH, 0x4e4e4e));
+        for(let i=0; i <= NUM_HEIGHT; i++){
+            this.linesContainer.add(this.createHorizontalLine(INSIDE_HEIGHT/NUM_HEIGHT*i + MIDDLE_LINES_WIDTH, INSIDE_WIDTH + (SIDE_BORDER_WIDTH/2), MIDDLE_LINES_WIDTH, 0x4e4e4e, this.sceneObj));
         }
+
+    }
+    
+    convertToPixelCoord(unitCoordX_, unitCoordY_){
+
+        return [(INSIDE_WIDTH/NUM_WIDTH*unitCoordX_ + MIDDLE_LINES_WIDTH)+(unitWidth/2), 
+            (INSIDE_HEIGHT/NUM_HEIGHT*unitCoordY_ + MIDDLE_LINES_WIDTH)+(unitHeight/2)];
     }
 
-    createHorizontalLine(x_coord, border_width, color){
-        return this.sceneObj.add.line(x_coord, SCREEN_HEIGHT/2, 0, 0, 0, SCREEN_HEIGHT-border_width, color).setLineWidth(border_width);
+    createVerticalLine(x_coord, height, border_width, color, sceneObj){
+        return sceneObj.add.line(x_coord, height/2, 0, 0, 0, height, color).setLineWidth(border_width);
     }
 
-    createVerticalLine(y_coord, border_width, color){
-        return this.sceneObj.add.line(SCREEN_WIDTH/2, y_coord, 0, 0, SCREEN_WIDTH-border_width, 0, color).setLineWidth(border_width);
+    createHorizontalLine(y_coord, width, border_width, color, sceneObj){
+        console.log(border_width*10)
+        return sceneObj.add.line(width/2, y_coord, 0, 0, width, 0, color).setLineWidth(border_width);
     }
 
     createPixels(){
-        var unitWidth = INSIDE_WIDTH/NUM_WIDTH-UNIT_SIDE_WHITE_BORDER;
-        var unitHeight = INSIDE_HEIGHT/NUM_HEIGHT-UNIT_SIDE_WHITE_BORDER;
 
         this.unitsArray = Array(NUM_WIDTH);
         for (let i = 0; i < this.unitsArray.length; i++) {
@@ -62,9 +75,9 @@ export default class PixelManager{
 
         for (let i=0; i<NUM_WIDTH; i++){
             for (let j=0; j<NUM_HEIGHT; j++){
-                this.unitsArray[i][j] = this.sceneObj.add.rectangle((INSIDE_WIDTH/NUM_WIDTH*i + SIDE_BORDER_WIDTH)+(unitWidth/2), 
-                (INSIDE_HEIGHT/NUM_HEIGHT*j + SIDE_BORDER_WIDTH)+(unitHeight/2), 
-                unitWidth, unitHeight, 0xffffff);
+                this.unitsArray[i][j] = this.sceneObj.add.rectangle((INSIDE_WIDTH/NUM_WIDTH*i + MIDDLE_LINES_WIDTH)+(unitWidth/2), 
+                (INSIDE_HEIGHT/NUM_HEIGHT*j + MIDDLE_LINES_WIDTH)+(unitHeight/2), 
+                unitWidth, unitHeight, 0x000000);
             }
         }
     }
@@ -76,9 +89,6 @@ export default class PixelManager{
             for (let j=0; j<NUM_HEIGHT; j++){
                 this.setPixelColor(i, j, this.spectrumColors.getColorTimes(timesArray[i][j], maxSize));
             }
-        }
-        if (timesArrayAndMaxSize[2] != undefined){
-            this.setPixelColor(timesArrayAndMaxSize[2][0], timesArrayAndMaxSize[2][1], 0x00ff00);
         }
     }
 

@@ -1,5 +1,6 @@
 
 import Game from './main_scene.js'
+import Game2 from './main_scene2.js';
 // Aspect Ratio 16:9 - Portrait
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from './config.js';
 
@@ -17,7 +18,7 @@ const config = {
         createContainer: true
     },
     backgroundColor: '#ffffff',
-    scene: [Game],
+    scene: [Game, Game2],
     mipmapFilter: "LINEAR_MIPMAP_LINEAR"
 
 }

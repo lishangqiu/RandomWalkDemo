@@ -17,7 +17,7 @@ const config = {
     dom: {
         createContainer: true
     },
-    backgroundColor: '#ffffff',
+    backgroundColor: '#d0d0d0',
     scene: [Game, Game2],
     mipmapFilter: "LINEAR_MIPMAP_LINEAR"
 

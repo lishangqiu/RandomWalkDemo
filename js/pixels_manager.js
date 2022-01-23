@@ -41,14 +41,6 @@ export default class PixelManager{
     createUnits(){
         this.createPixels();
 
-        for(let i=0; i <= NUM_WIDTH; i++){
-            this.linesContainer.add(this.createVerticalLine(INSIDE_WIDTH/NUM_WIDTH*i + MIDDLE_LINES_WIDTH, INSIDE_HEIGHT + (SIDE_BORDER_WIDTH/2), MIDDLE_LINES_WIDTH, 0x4e4e4e, this.sceneObj));
-        }
-
-        for(let i=0; i <= NUM_HEIGHT; i++){
-            this.linesContainer.add(this.createHorizontalLine(INSIDE_HEIGHT/NUM_HEIGHT*i + MIDDLE_LINES_WIDTH, INSIDE_WIDTH + (SIDE_BORDER_WIDTH/2), MIDDLE_LINES_WIDTH, 0x4e4e4e, this.sceneObj));
-        }
-
     }
     
     convertToPixelCoord(unitCoordX_, unitCoordY_){

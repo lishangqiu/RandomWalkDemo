@@ -48,37 +48,35 @@
                 </li>
             </ul>
         </nav>
+        <div>
+            <div id="spectrum_stuff" style="position: absolute; right: 260px; top: 0 ; bottom:0; margin: auto; height: fit-content; width: fit-content;">
+                <img src="assets/spectrum.png" width="40" style= "transform: rotateX(180deg)">
+                <p style="position: absolute;top: 0px;left:46px; font-weight: bolder; font-size: 17px;" id="max-thing">25</p>
+                <p style="position: absolute;bottom: 0px;left:46px; font-weight: bolder; font-size: 17px;">0</p>
+            </div>
+            <div class="sidenav">
+                <button type="button" class="btn btn-primary" id="closeUpButton">Closeup Mode</button>
+            </div>
 
-        <div id="spectrum_stuff" style="position: absolute; right: 260px; top: 0 ; bottom:0; margin: auto; height: fit-content; width: fit-content;">
-            <img src="assets/spectrum.png" width="40" style= "transform: rotateX(180deg)">
-            <p style="position: absolute;top: 0px;left:46px; font-weight: bolder; font-size: 17px;" id="max-thing">25</p>
-            <p style="position: absolute;bottom: 0px;left:46px; font-weight: bolder; font-size: 17px;">0</p>
+            <div  id="game">
+
+            </div>
+
+            <div class="slidecontainer" style="width: 1000px; left: 0; right: 0; margin: auto; margin-top: 10px;">
+                <input type="range" min="0" max="9999" value="0" class="slider" id="stepsSlider">
+                <label for="stepsSlider" class="pull-left" style="font-size: 15px;">0</label>
+                <label for="stepsSlider" class="pull-right" style="font-size: 15px;">10000</label>
+                <output id="sliderVal" for="stepsSlider" class="text-center" style="font-size: 17px; color: black; font-weight: bold;">0</output>
+            </div>
+
+            <script language="javascript">
+                window.onload = function(){
+                    
+                }
+            </script>
+            <script type="text/javascript" src="js/phaser.js"></script>
+            <script type="text/javascript" src="js/victor.js"></script>
+            <script src='js/main.js' type='module'></script>
         </div>
-        <div class="sidenav">
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
-          </div>
-
-        <div  id="game">
-
-        </div>
-
-        <div class="slidecontainer" style="width: 1000px; left: 0; right: 0; margin: auto; margin-top: 10px;">
-            <input type="range" min="0" max="9999" value="0" class="slider" id="stepsSlider">
-            <label for="stepsSlider" class="pull-left" style="font-size: 15px;">0</label>
-            <label for="stepsSlider" class="pull-right" style="font-size: 15px;">10000</label>
-            <output id="sliderVal" for="stepsSlider" class="text-center" style="font-size: 17px; color: black; font-weight: bold;">0</output>
-        </div>
-
-        <script language="javascript">
-            window.onload = function(){
-                console.log("hiu");
-            }
-        </script>
-        <script type="text/javascript" src="js/phaser.js"></script>
-        <script type="text/javascript" src="js/victor.js"></script>
-        <script src='js/main.js' type='module'></script>
     </body>
 </html>

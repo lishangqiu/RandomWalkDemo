@@ -82,11 +82,13 @@ cursor: pointer;
     width: 250px;
     position: fixed;
     z-index: 1;
-    top: 0;
     left: 0;
     background-color: rgb(77, 77, 77);
     overflow-x: hidden;
     padding-top: 20px;
+
+    display: flex;
+    align-items: center;
 }
 
 /* The navigation menu links */
@@ -102,4 +104,12 @@ cursor: pointer;
 .main {
     margin-left: 160px; /* Same as the width of the sidebar */
     padding: 0px 10px;
+}
+
+.sidenav button{
+    width: 90%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 10px;
 }

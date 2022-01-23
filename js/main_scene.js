@@ -40,7 +40,7 @@ export default class Game extends Phaser.Scene{
                 this.pixelManager.linesContainer.setVisible(false);
             }
             else{
-                this.pixelManager.linesContainer.setVisible(true);
+                this.pixelManager.linesContainer.setVisible(false);
             }
             camera.setZoom(newZoom);
             Game.currZoom = newZoom;
@@ -51,6 +51,7 @@ export default class Game extends Phaser.Scene{
             document.getElementById('sliderVal').innerHTML = document.getElementById("stepsSlider").value; //displays this value to the html page
         };
         this.input.on('pointermove', this.onPointerMove, this);
+        //this.cameras.main.startFollow(this.player_thing);
 
     }
 
